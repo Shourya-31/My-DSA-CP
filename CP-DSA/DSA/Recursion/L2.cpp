@@ -6,18 +6,29 @@
 #include <iostream>
 using namespace std;
 
+// Decreasing order:
 void print(int n){
     if(n == 0){
         return;
     }
-
     cout<<n<<" ";
     print(n-1);
+}
+
+// Increasing order:
+void printi(int n){
+    if(n == 0){
+        return;
+    }
+    printi(n-1);
+    cout<<n<<" ";
 }
 
 int main() {
     int n;
     cin>>n;
     print(n);
+    cout<<endl;
+    printi(n);
     return 0;
 }
