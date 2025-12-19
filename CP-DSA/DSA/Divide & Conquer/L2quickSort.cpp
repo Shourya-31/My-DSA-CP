@@ -102,3 +102,9 @@ int main() {
     printArr(arr,n);
     return 0;
 }
+
+// Why Time Complexity in Worst Case is O(n^2):
+// When the pivot is repeatedly a smallest/largest element of the array
+// As we will need to check all the elements, therefore the operations will be sum of first n natural numbers
+// Which implies Time Complexity will be O(n^2)
+// This is not encountered much so Quick sort is a nice algorithm
