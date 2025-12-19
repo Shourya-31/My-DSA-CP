@@ -37,7 +37,7 @@ void removeDuplicates(string str, string ans, int i, int map[26]){
         removeDuplicates(str, ans, i + 1, map); // skip the character
     } else { // Not a duplicate
         map[mapIdx] = true;
-        removeDuplicates(str, ans + str[i], i+1, map); // include the character
+        removeDuplicates(str, ans + str[i], i + 1, map); // include the character
     }
 }
 
@@ -49,3 +49,6 @@ int main() {
     removeDuplicates(str, ans, 0, map);
     return 0;
 }
+
+// Similarly, we can solve by going from end to start of the string
+// In that case, we will build the result string in reverse order
