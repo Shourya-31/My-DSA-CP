@@ -52,8 +52,8 @@ void mergeSort(int arr[], int si, int ei) {
     mergeSort(arr,si,mid); //left sort
     mergeSort(arr,mid+1,ei); //right sort
 
-    merge(arr,si,mid,ei); //merge both halves
-
+    merge(arr,si,mid,ei); //merge both halves => Conquer
+    // A Recursive function to divide the array into halves until single element is left
 }
 
 void printArr(int arr[], int n){
@@ -67,11 +67,13 @@ int main() {
     int n;
     cout<<"Enter size of array: ";
     cin>>n;
+
     int arr[n];
     cout<<"Enter elements of array: ";
     for(int i=0; i<n; i++){
         cin>>arr[i];
     }
+
     mergeSort(arr,0,n-1);
     cout<<"Sorted array: ";
     printArr(arr,n);
