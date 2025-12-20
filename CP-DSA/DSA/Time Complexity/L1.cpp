@@ -34,3 +34,7 @@
 // Big Theta Notation: (Θ) => Average Case
 // A mathematical notation used to describe the tight bound of an algorithm's time complexity.
 
+// Space Complexity:
+// This is the amount of memory space taken by an algorithm as a function of input size (n).
+// 
+//
