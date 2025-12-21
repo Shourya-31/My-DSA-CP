@@ -74,4 +74,29 @@ int fibonacci(int n) {
 // where a >= 1, b > 1, and f(n) is an asymptotically positive function
 // Case 1: If f(n) = O(n^(log_b(a) - ε)) for some ε > 0, then T(n) = Θ(n^(log_b(a)))
 // Case 2: If f(n) = Θ(n^(log_b(a)) * log^k(n)) for some k >= 0, then T(n) = Θ(n^(log_b(a)) * log^(k+1)(n))
-// Case 3: If f(n) = Ω(n^(log_b(a) + ε)) for some ε > 0, and af(n/b) <= cf(n) for some c < 1 and sufficiently large n, then T(n) = Θ(f(n))
+// Case 3: If f(n) = Ω(n^(log_b(a) + ε)) for some ε > 0, and af(n/b) <= cf(n) for some c < 1 and sufficiently large n, then T(n) = Θ(f(n)) 
+
+// Example 4: Merge Sort
+void megeSort(int arr[], int l, int r) {
+    if (l >= r) {
+        return;
+    }
+
+    int mid = l + (r - l) / 2;
+    megeSort(arr, l, mid);
+    megeSort(arr, mid + 1, r);
+
+    // Merging logic here
+}
+// Time Complexity Analysis:
+// T(n) = 2T(n/2) + O(n)
+// Here, a = 2, b = 2, f(n) = O(n)
+// log_b(a) = log_2(2) = 1
+// f(n) = Θ(n^(log_b(a)) * log^0(n)) => Case 2 of Master's Theorem
+// Therefore, T(n) = Θ(n * log(n))
+// Therefore Time Complexity is O(n log n)
+// Space Complexity Analysis:
+// Max depth of recursion tree = log(n)
+// Space Complexity is O(log(n))
+
+// To compare 2 complexities, just substitute a large value of n and see which one grows faster.
