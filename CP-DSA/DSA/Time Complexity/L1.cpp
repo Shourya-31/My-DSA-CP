@@ -36,5 +36,30 @@
 
 // Space Complexity:
 // This is the amount of memory space taken by an algorithm as a function of input size (n).
-// 
-//
+
+// Common Time Complexities:
+
+// O(1) - Constant Time
+// Example: Accessing an array element by index.
+
+// O(log n) - Logarithmic Time
+// Example: Binary Search in a sorted array.
+
+// O(n) - Linear Time
+// Example: Traversing an array.
+
+// O(n log n) - Linearithmic Time
+// Example: Efficient sorting algorithms like Merge Sort and Quick Sort.
+
+// O(n^2) - Quadratic Time
+// Example: Simple sorting algorithms like Bubble Sort, Insertion Sort.
+
+// O(n^3) - Cubic Time
+// Example: Certain matrix multiplication algorithms.
+
+// O(2^n) - Exponential Time
+// Example: Solving the Traveling Salesman Problem using brute-force approach.
+
+// Graphs of them are given below:
+// https://www.bigocheatsheet.com/
+
