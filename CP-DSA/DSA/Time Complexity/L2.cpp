@@ -29,3 +29,40 @@ int sum(int n) {
 // TC = total work done = (number of calls)*(work done in each call) 
 // => n*O(1) = O(n)
 // Therefore Time Complexity is O(n)
+
+// Space Complexity Analysis:
+// Max depth of recursion tree = n
+// Space per call = O(1)
+// SC = (max depth of recursion tree)*(space per call)
+// Therefore Space Complexity is O(n)
+
+// Example 2: Factorial of N
+int factorial(int n) {
+    if (n == 0) {
+        return 1;
+    }
+
+    return n * factorial(n - 1);
+}
+// Time Complexity Analysis:
+// T(n) = T(n-1) + O(1)
+// Time Complexity is O(n)
+// Space Complexity Analysis:
+// Space Complexity is O(n)
+
+// Example 3: Fibonacci of N
+int fibonacci(int n) {
+    if (n == 1 || n == 0) {
+        return n;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+// Time Complexity Analysis:
+// T(n) = T(n-1) + T(n-2) + O(1)
+// Drawing Recurrence Tree, we can see that the number of calls grows exponentially
+// Therefore Time Complexity is O(2^n)
+
+// Space Complexity Analysis:
+// Max depth of recursion tree = n
+// Space Complexity is O(n)
