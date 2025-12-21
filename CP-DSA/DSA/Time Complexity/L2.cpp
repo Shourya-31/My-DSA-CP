@@ -66,3 +66,12 @@ int fibonacci(int n) {
 // Space Complexity Analysis:
 // Max depth of recursion tree = n
 // Space Complexity is O(n)
+
+
+// Master's Theorem:
+// Used in solving recurrences of the form:
+// T(n) = aT(n/b) + f(n)
+// where a >= 1, b > 1, and f(n) is an asymptotically positive function
+// Case 1: If f(n) = O(n^(log_b(a) - ε)) for some ε > 0, then T(n) = Θ(n^(log_b(a)))
+// Case 2: If f(n) = Θ(n^(log_b(a)) * log^k(n)) for some k >= 0, then T(n) = Θ(n^(log_b(a)) * log^(k+1)(n))
+// Case 3: If f(n) = Ω(n^(log_b(a) + ε)) for some ε > 0, and af(n/b) <= cf(n) for some c < 1 and sufficiently large n, then T(n) = Θ(f(n))
