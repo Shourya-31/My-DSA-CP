@@ -58,7 +58,7 @@ bool isSafe(vector<vector<char>> board, int row, int col)
     return true;
 }
 
-void nQueens(vector<vector<char>> board, int row)
+int nQueens(vector<vector<char>> board, int row)
 {
     // El row me ek queen rakhni hai
     int n = board.size();
@@ -66,19 +66,21 @@ void nQueens(vector<vector<char>> board, int row)
     if (row == n)
     {
         printBoard(board);
-        return;
+        return 1;
     }
 
+    int count = 0;
     for (int j = 0; j < n; j++)
     {
         // Place Queen at (row,j) only if it's safe
         if (isSafe(board, row, j))
         { // SAFETY FILTER
             board[row][j] = 'Q';
-            nQueens(board, row + 1);
+            count += nQueens(board, row + 1);
             board[row][j] = '.';
         }
     }
+    return count;
 }
 
 int main()
@@ -103,5 +105,11 @@ int main()
     printBoard(board);
     cout << "\nAll possible arrangements of " << n << " queens are: \n";
     nQueens(board, 0);
+    int count = nQueens(board, 0);
+    cout << "Total arrangements: " << count << endl;
     return 0;
 }
+
+
+// Time Complexity: O(N!) in the worst case where N is the size of the board.
+// Space Complexity: O(N^2) for the board and O(N) for the recursion stack.
