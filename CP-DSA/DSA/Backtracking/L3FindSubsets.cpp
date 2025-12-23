@@ -57,3 +57,7 @@ int main(){
 }
 
 // Sabse pehele YES choices aayengi phir NO choices aayengi.
+// Time Complexity: O(2^n) where n is the length of the string.
+// Reccurance relation: T(n) = 2*T(n-1) + O(1)
+
+// Space Complexity: O(n) for the recursion stack.
