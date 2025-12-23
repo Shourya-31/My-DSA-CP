@@ -39,15 +39,19 @@ bool isSafe(vector<vector<char>> board, int row, int col)
     }
 
     // Left Diagonal Safety
-    for(int i=row, j=col; i>=0 && j>=0; i--, j--){
-        if(board[i][j] == 'Q'){
+    for (int i = row, j = col; i >= 0 && j >= 0; i--, j--)
+    {
+        if (board[i][j] == 'Q')
+        {
             return false;
         }
     }
 
     // Right Diagonal Safety
-    for(int i=row, j=col; i>=0 && j<n; i--, j++){
-        if(board[i][j]=='Q'){
+    for (int i = row, j = col; i >= 0 && j < n; i--, j++)
+    {
+        if (board[i][j] == 'Q')
+        {
             return false;
         }
     }
@@ -67,11 +71,13 @@ void nQueens(vector<vector<char>> board, int row)
 
     for (int j = 0; j < n; j++)
     {
-
-        // Place Queen at (row,j)
-        board[row][j] = 'Q';
-        nQueens(board, row + 1);
-        board[row][j] = '.'; // Reasoning => Backtrack else next calls will have this queen placed
+        // Place Queen at (row,j) only if it's safe
+        if (isSafe(board, row, j))
+        { // SAFETY FILTER
+            board[row][j] = 'Q';
+            nQueens(board, row + 1);
+            board[row][j] = '.';
+        }
     }
 }
 
