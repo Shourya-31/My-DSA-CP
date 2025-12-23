@@ -78,7 +78,9 @@ void nQueens(vector<vector<char>> board, int row)
 int main()
 {
     vector<vector<char>> board;
-    int n = 2;
+    int n;
+    cout << "Enter the value of N: ";
+    cin >> n;
 
     // Initialize the board with '.'
     for (int i = 0; i < n; i++)
