@@ -55,9 +55,9 @@ public:
 
     void push_back(int val)
     {
-        Node* newNode = new Node(val);
+        Node *newNode = new Node(val);
 
-        if(head == NULL)
+        if (head == NULL)
         {
             head = tail = newNode;
         }
@@ -66,6 +66,17 @@ public:
             tail->next = newNode;
             tail = newNode;
         }
+    }
+
+    void printLL()
+    {
+        Node *temp = head;
+        while (temp != NULL) // TC: O(n)
+        {
+            cout << temp->data << "->";
+            temp = temp->next;
+        }
+        cout<<"NULL"<<endl;
     }
 };
 
@@ -78,6 +89,8 @@ int main()
     l1.push_front(1);
     // 1->2->3->NULL
     l1.push_back(4);
+
+    l1.printLL();
     return 0;
 }
 
