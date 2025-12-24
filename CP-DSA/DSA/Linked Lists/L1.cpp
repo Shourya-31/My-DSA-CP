@@ -118,10 +118,19 @@ public:
     //     }
     // }
 
-    void pop_front(){
-        Node* temp = head;
+    void pop_front()
+    {
+
+        if (head == NULL)
+        {
+            cout << "LL is empty" << endl;
+            return;
+        }
+        Node *temp = head;
         head = head->next;
-        
+
+        temp->next = NULL;
+        delete temp;
     }
 };
 
@@ -136,6 +145,8 @@ int main()
     l1.push_back(4);
 
     l1.insertAtMid(10, 3);
+
+    l1.pop_front();
 
     l1.printLL();
     return 0;
