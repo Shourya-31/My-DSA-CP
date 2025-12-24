@@ -159,7 +159,7 @@ public:
         {
             if (temp->data == key)
             {
-                cout<<"Key found at: "<<idx<<endl;
+                cout << "Key found at: " << idx << endl;
             }
 
             temp = temp->next;
@@ -167,6 +167,32 @@ public:
         }
 
         return -1;
+    }
+
+    int helper(Node *temp, int key)
+    {
+        if (temp == NULL)
+        {
+            return -1;
+        }
+
+        if (temp->data == key)
+        {
+            return 0;
+        }
+
+        int idx = helper(temp->next, key);
+        if (idx == -1)
+        {
+            return -1;
+        }
+
+        return idx + 1;
+    }
+
+    int RecursiveSearch(int key)
+    {
+        cout << "Key is at: " << helper(head, key) << endl;
     }
 };
 
@@ -189,5 +215,6 @@ int main()
     l1.printLL();
 
     l1.search(10);
+    l1.RecursiveSearch(3);
     return 0;
 }
