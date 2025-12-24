@@ -24,6 +24,17 @@ public:
         data = val;
         next = NULL;
     }
+
+    // ~Node()
+    // {
+    //     cout << "Node destructor for data = " << data << endl;
+    //     if (next != NULL)
+    //     {
+
+    //         delete next;
+    //         next = NULL;
+    //     }
+    // }
 };
 
 class List
@@ -88,13 +99,29 @@ public:
         {
             if (temp == NULL)
             {
-                cout<<"Position is Invalid"<<endl;
+                cout << "Position is Invalid" << endl;
             }
             temp = temp->next;
         }
         // temp now points to idx-1
         newNode->next = temp->next;
         temp->next = newNode;
+    }
+
+    // ~List()
+    // {
+    //     cout << "~List" << endl;
+    //     if (head != NULL)
+    //     {
+    //         delete head;
+    //         head = NULL;
+    //     }
+    // }
+
+    void pop_front(){
+        Node* temp = head;
+        head = head->next;
+        
     }
 };
 
@@ -108,7 +135,7 @@ int main()
     // 1->2->3->NULL
     l1.push_back(4);
 
-    l1.insertAtMid(10,3);
+    l1.insertAtMid(10, 3);
 
     l1.printLL();
     return 0;
