@@ -132,6 +132,23 @@ public:
         temp->next = NULL;
         delete temp;
     }
+
+    void pop_back()
+    {
+        Node *temp = head;
+
+        // while(temp->next != tail){
+        //     temp = temp->next;
+        // }
+        while (temp->next->next != NULL)
+        {
+            temp = temp->next;
+        }
+
+        temp->next = NULL;
+        delete tail;
+        tail = temp;
+    }
 };
 
 int main()
@@ -147,6 +164,8 @@ int main()
     l1.insertAtMid(10, 3);
 
     l1.pop_front();
+
+    l1.pop_back();
 
     l1.printLL();
     return 0;
