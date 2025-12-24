@@ -76,7 +76,25 @@ public:
             cout << temp->data << "->";
             temp = temp->next;
         }
-        cout<<"NULL"<<endl;
+        cout << "NULL" << endl;
+    }
+
+    void insertAtMid(int val, int idx)
+    {
+        Node *newNode = new Node(val);
+
+        Node *temp = head;
+        for (int i = 0; i < idx - 1; i++)
+        {
+            if (temp == NULL)
+            {
+                cout<<"Position is Invalid"<<endl;
+            }
+            temp = temp->next;
+        }
+        // temp now points to idx-1
+        newNode->next = temp->next;
+        temp->next = newNode;
     }
 };
 
@@ -90,8 +108,8 @@ int main()
     // 1->2->3->NULL
     l1.push_back(4);
 
+    l1.insertAtMid(10,3);
+
     l1.printLL();
     return 0;
 }
-
-// 1/HEAD -> 2/NEXT -> 3/NULL
