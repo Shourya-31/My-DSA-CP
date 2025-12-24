@@ -14,6 +14,7 @@ using namespace std;
 
 class Node
 {
+public:
     int data;
     Node *next;
 
@@ -31,13 +32,35 @@ class List
     Node *tail;
 
 public:
-    List() {
+    List()
+    {
         head = NULL;
         tail = NULL;
     }
+
+    void push_front(int val)
+    {
+        Node *newNode = new Node(val); // dynamic
+
+        if (head == NULL)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+        }
+    }
 };
 
-int main() {
+int main()
+{
     List l1;
+
+    l1.push_front(3);
+    l1.push_front(2);
+    l1.push_front(1);
+    // 1->2->3->NULL
     return 0;
 }
