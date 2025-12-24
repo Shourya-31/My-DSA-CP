@@ -190,9 +190,27 @@ public:
         return idx + 1;
     }
 
-    int RecursiveSearch(int key)
+    void RecursiveSearch(int key)
     {
         cout << "Key is at: " << helper(head, key) << endl;
+    }
+
+    void reverse()
+    {
+        Node *prev = NULL;
+        Node *curr = head;
+        tail = head;
+        
+        while (curr != NULL)
+        {
+            Node *next = curr->next;
+            curr->next = prev;
+
+            // Updation for next iteration
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
     }
 };
 
@@ -216,5 +234,8 @@ int main()
 
     l1.search(10);
     l1.RecursiveSearch(3);
+
+    l1.reverse();
+    l1.printLL();
     return 0;
 }
