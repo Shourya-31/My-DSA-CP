@@ -52,6 +52,21 @@ public:
             head = newNode;
         }
     }
+
+    void push_back(int val)
+    {
+        Node* newNode = new Node(val);
+
+        if(head == NULL)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 };
 
 int main()
@@ -62,5 +77,8 @@ int main()
     l1.push_front(2);
     l1.push_front(1);
     // 1->2->3->NULL
+    l1.push_back(4);
     return 0;
 }
+
+// 1/HEAD -> 2/NEXT -> 3/NULL
