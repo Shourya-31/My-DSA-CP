@@ -9,65 +9,82 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void printSudoku(int sudoku[9][9]) {
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
+void printSudoku(int sudoku[9][9])
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
             cout << sudoku[i][j] << " ";
         }
         cout << endl;
     }
 }
 
-bool isSafe(int sudoku[9][9], int row, int col, int digit){
+bool isSafe(int sudoku[9][9], int row, int col, int digit)
+{
     // Check in the row
-    for(int j=0; j<9; j++){
-        if(sudoku[row][j] == digit){
+    for (int j = 0; j < 9; j++)
+    {
+        if (sudoku[row][j] == digit)
+        {
             return false;
         }
     }
 
     // Check in the column
-    for(int i=0; i<9; i++){
-        if(sudoku[i][col] == digit){
+    for (int i = 0; i < 9; i++)
+    {
+        if (sudoku[i][col] == digit)
+        {
             return false;
         }
     }
 
     // Check in the 3x3 subgrid
-    int startRow = (row/3)*3;
-    int startCol = (col/3)*3;
-    for(int i=startRow; i<=startRow+2; i++){
-        for(int j=startCol; j<=startCol+2; j++){
-            if(sudoku[i][j] == digit){
+    int startRow = (row / 3) * 3;
+    int startCol = (col / 3) * 3;
+    for (int i = startRow; i <= startRow + 2; i++)
+    {
+        for (int j = startCol; j <= startCol + 2; j++)
+        {
+            if (sudoku[i][j] == digit)
+            {
                 return false;
             }
         }
-
     }
     return true;
 }
 
-bool sudokuSolver(int sudoku[9][9], int row, int col){
+bool sudokuSolver(int sudoku[9][9], int row, int col)
+{
     // Base Case
-    if(row == 9){
+    if (row == 9)
+    {
         printSudoku(sudoku);
         return true;
     }
 
-    int nextRow =row, nextCol = col+1;
-    if(col+1 == 9){
-        nextRow = row+1;
+    int nextRow = row, nextCol = col + 1;
+    if (col + 1 == 9)
+    {
+        nextRow = row + 1;
         nextCol = 0;
     }
 
-    if(sudoku[row][col] != 0){
+    if (sudoku[row][col] != 0)
+    {
         return sudokuSolver(sudoku, nextRow, nextCol);
     }
 
-    for(int digit=1; digit<=9; digit++){
-        if(isSafe(sudoku, row, col, digit)) {
+    for (int digit = 1; digit <= 9; digit++)
+    {
+        if (isSafe(sudoku, row, col, digit))
+        {
             sudoku[row][col] = digit;
-            if(sudokuSolver(sudoku, nextRow, nextCol)){
+            if (sudokuSolver(sudoku, nextRow, nextCol))
+            {
                 return true;
             }
             sudoku[row][col] = 0;
