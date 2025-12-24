@@ -200,7 +200,7 @@ public:
         Node *prev = NULL;
         Node *curr = head;
         tail = head;
-        
+
         while (curr != NULL)
         {
             Node *next = curr->next;
@@ -212,6 +212,58 @@ public:
         }
         head = prev;
     }
+
+    int getSize()
+    {
+        int sz = 0;
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            temp = temp->next;
+            sz++;
+        }
+        return sz;
+    }
+
+    void removeNfromEnd(int n)
+{
+    int size = getSize();
+
+    if (n <= 0 || n > size) {
+        cout << "Invalid position\n";
+        return;
+    }
+
+    // Case 1: delete head
+    if (n == size) {
+        Node* toDel = head;
+        head = head->next;
+        delete toDel;
+
+        if (head == NULL)
+            tail = NULL;
+
+        return;
+    }
+
+    Node *temp = head;
+
+    for (int i = 1; i < size - n; i++) {
+        temp = temp->next;
+    }
+
+    Node *toDel = temp->next;
+    cout << "Going to delete: " << toDel->data << endl;
+
+    temp->next = toDel->next;
+
+    if (toDel == tail)
+        tail = temp;
+
+    delete toDel;
+}
+
 };
 
 int main()
@@ -221,6 +273,12 @@ int main()
     l1.push_front(3);
     l1.push_front(2);
     l1.push_front(1);
+    l1.push_front(9);
+    l1.push_front(8);
+    l1.push_front(7);
+    l1.push_front(6);
+    l1.push_front(5);
+    l1.push_front(11);
     // 1->2->3->NULL
     l1.push_back(4);
 
@@ -237,5 +295,9 @@ int main()
 
     l1.reverse();
     l1.printLL();
+    l1.removeNfromEnd(4);
+
+    l1.printLL();
+
     return 0;
 }
