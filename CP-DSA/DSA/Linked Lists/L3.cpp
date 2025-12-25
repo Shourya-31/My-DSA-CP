@@ -204,5 +204,3 @@ int main()
     removeCycle(l1.getHead());
 }
 
-
-
