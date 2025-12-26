@@ -77,6 +77,21 @@ public:
         temp->next = NULL;
         delete temp;
     }
+
+    void push_back(int val)
+    {
+        Node *newNode = new Node(val);
+
+        if (head == NULL)
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 };
 
 void printLL(Node *head)
@@ -111,20 +126,81 @@ bool isCycle(Node *head)
     return false;
 }
 
-void splitMid(head){
-    
+Node *splitMid(Node *head)
+{
+    // Finding mid point via slow & fast pointer
+    // When fast reaches NULL at next then slow reaches at mid
+    // we will track the prev of slow to find the mid value
+    // to break the connection: prev->next = NULL
+    // This is for Even LL
+    // For Odd LL, same procedure will be followed
+
+    Node *slow = head;
+    Node *fast = head;
+    Node *prev = NULL;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        prev = slow;
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    if (prev != NULL)
+    {
+        prev->next = NULL; // Split at Mid
+    }
+
+    return slow; // slow = righrtHead
 }
 
-void mergeSort(Node* head){
-    if(head == NULL || head->next == NULL){
-        return;
+Node *merge(Node *left, Node *right)
+{
+    List ans;
+    Node *i = left;
+    Node *j = right;
+
+    while (i != NULL && j != NULL)
+    {
+        if (i->data <= j->data)
+        {
+            ans.push_back(i->data);
+            i = i->next;
+        }
+        else
+        {
+            ans.push_back(j->data);
+            j = j->next;
+        }
     }
-    Node* rightHead = splitMid(head);
 
-    mergeSort(head); //left head
-    mergeSort(rightHead); //right head
+    while (i != NULL)
+    {
+        ans.push_back(i->data);
+        i = i->next;
+    }
 
-    merge(head,rightHead);
+    while (j != NULL)
+    {
+        ans.push_back(j->data);
+        j = j->next;
+    }
+
+    return ans.getHead();
+}
+
+Node *mergeSort(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *rightHead = splitMid(head);
+
+    Node *left = mergeSort(head);       // left head
+    Node *right = mergeSort(rightHead); // right head
+
+    return merge(left, right);
 }
 
 int main()
@@ -136,5 +212,7 @@ int main()
     l1.push_front(4);
     l1.push_front(5);
 
-    
+    printLL(l1.getHead());
+    Node *sortedHead = mergeSort(l1.getHead()); 
+    printLL(sortedHead);
 }
