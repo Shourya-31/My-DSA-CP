@@ -65,7 +65,6 @@
 
 // In the fifth test case, it can be shown that it's impossible to sort the boxes.
 
-
 // Solution:
 // If array is sorted: Then print yes
 // If array is unsorted: If K=1 => Print No
@@ -75,25 +74,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
+int main()
+{
     int t;
-    cin>>t;
-    while(t--)
+    cin >> t; // number of test cases
+    while (t--)
     {
         long long n, k;
-        cin >> n >> k;  
+        cin >> n >> k; // n = number of boxes, k = max allowed reverse length
         vector<long long> a(n);
-        for(int i = 0; i < n; i++){ // n
-            cin>>a[i];
+        for (int i = 0; i < n; i++)
+        { // n
+            cin >> a[i]; // read the array
         }
-
-        vector<long long> copy_a = a; // n
+        // input taking done
+        vector<long long> copy_a = a;       // n
         sort(copy_a.begin(), copy_a.end()); // nlogn
+        // create a sorted version of the array to compare
 
-        if(copy_a == a || k>1){ // n
-            cout<<"YES"<<endl;
-        }else{
-            cout<<"NO"<<endl;
+        if (copy_a == a || k > 1)
+         // if already sorted → no operations needed
+         // if k > 1 → we can rearrange any array using reverses
+        { // n
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
         }
     }
     return 0;
