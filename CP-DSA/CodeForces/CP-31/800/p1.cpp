@@ -81,6 +81,7 @@ int main(){
     while(t--)
     {
         long long n, k;
+        cin >> n >> k;  
         vector<long long> a(n);
         for(int i = 0; i < n; i++){ // n
             cin>>a[i];
