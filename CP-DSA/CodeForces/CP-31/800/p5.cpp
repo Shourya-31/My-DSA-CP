@@ -84,10 +84,27 @@
 //  to form [1,2,3,4,5]
 // .
 
+
 // In the third test case, it can be proven that it is impossible to sort the permutation.
 
 // Approach:
+/*
+            Using swap logic reasoning:
 
+            - Only peaks (local maximums) can be swapped.
+            - Swap always moves the peak to the RIGHT.
+            - No operation moves any element LEFT.
+
+            Element 1:
+            - Can never be a peak.
+            - So it can never be swapped.
+            - Its position is fixed forever.
+
+            Sorted array requires 1 at index 0.
+            Therefore:
+            - If 1 is already at index 0 → YES
+            - Otherwise → NO
+*/
 // Solution Code:
 #include <bits/stdc++.h>
 using namespace std;
