@@ -118,4 +118,32 @@ Example Output:
 ------------------------------------------------------------
 */
 
+// Solution:
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+
+        string x, s;
+        cin >> x >> s;
+
+        int ans = -1;
+
+        for (int ops = 0; ops <= 10; ops++) {
+            if (x.find(s) != -1) {
+                ans = ops;
+                break;
+            }
+            x += x;
+        }
+
+        cout << ans << '\n';
+    }
+    return 0;
+}
