@@ -38,7 +38,7 @@ void solve()
               // Therefore we are adding the terms based on conditional checks
             }
         }
-    }
+    } // TC: O(n*m)
 
     int q;
     cin>>q;
@@ -59,4 +59,6 @@ void solve()
         cout<<ans<<" ";
         //ans = pre[l2][r2]-pre[l1-1][r2]-pre[l2][r1-1]+pre[l1-1][r1-1];
     }
-}
+} // TC: q
+
+//TC: O(n*m + q)
