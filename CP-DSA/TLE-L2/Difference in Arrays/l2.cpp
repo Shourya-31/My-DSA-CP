@@ -22,7 +22,7 @@ int solve()
 
     map<int, int> mp;
     mp[0] = -1; // prefix sum 0 occurs at index -1
-    
+
     int ans = 0;
     int sum = 0;
     for(int i=0; i<n; i++){ //nlogn
@@ -47,6 +47,7 @@ int solve()
     }
     return ans;
 }
+
 
 int main(){
     cout<<solve()<<endl;
