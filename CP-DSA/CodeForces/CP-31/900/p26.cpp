@@ -15,9 +15,7 @@ int main()
         }
 
         if(n > 1){
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
+            
         }
     }
 }
