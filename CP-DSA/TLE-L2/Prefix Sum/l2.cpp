@@ -13,6 +13,13 @@ void solve()
     int n, m;
     cin >> n >> m;
     vector<vector<int>> v(n, vector<int>(m));
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cin >> v[i][j];
+        }
+    }
 
     vector<vector<int>> pre(n, vector<int>(m));
     for (int i = 0; i < n; i++)
@@ -33,32 +40,36 @@ void solve()
                 {
                     pre[i][j] -= pre[i - 1][j - 1];
                 }
-              //  pre[i][j] = pre[i][j - 1] + pre[i - 1][j] - pre[i - 1][j - 1] + v[i][j];
-              // The above line will give out of bound error when i = 0 or j = 0
-              // Therefore we are adding the terms based on conditional checks
+                //  pre[i][j] = pre[i][j - 1] + pre[i - 1][j] - pre[i - 1][j - 1] + v[i][j];
+                // The above line will give out of bound error when i = 0 or j = 0
+                // Therefore we are adding the terms based on conditional checks
             }
         }
     } // TC: O(n*m)
 
     int q;
-    cin>>q;
-    while(q--){
-        int l1,r1,l2,r2;
-        cin>>l1>>r1>>l2>>r2;
-        
+    cin >> q;
+    while (q--)
+    {
+        int l1, r1, l2, r2;
+        cin >> l1 >> r1 >> l2 >> r2;
+
         int ans = 0;
-        if(l1>0){
-            ans-=pre[l1-1][r2];
+        if (l1 > 0)
+        {
+            ans -= pre[l1 - 1][r2];
         }
-        if(r1>0){
-            ans-=pre[l2][r1-1];
+        if (r1 > 0)
+        {
+            ans -= pre[l2][r1 - 1];
         }
-        if(l1>0 && r1>0){
-            ans+=pre[l1-1][r1-1];
+        if (l1 > 0 && r1 > 0)
+        {
+            ans += pre[l1 - 1][r1 - 1];
         }
-        cout<<ans<<" ";
-        //ans = pre[l2][r2]-pre[l1-1][r2]-pre[l2][r1-1]+pre[l1-1][r1-1];
+        cout << ans << " ";
+        // ans = pre[l2][r2]-pre[l1-1][r2]-pre[l2][r1-1]+pre[l1-1][r1-1];
     }
 } // TC: q
 
-//TC: O(n*m + q)
+// TC: O(n*m + q)

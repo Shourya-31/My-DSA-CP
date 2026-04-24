@@ -36,6 +36,10 @@ int solve()
             ans = max(ans,i+1);
         }else{
             if(mp.find(sum) != mp.end()){
+
+                
+            }
+            if(mp.find(sum) != mp.end()){
                 ans = max(ans,i - mp[sum]);
                 // if sum is already present, then we store index updated
             }
