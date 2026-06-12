@@ -73,3 +73,31 @@ template <typename T> void unset_bit(T &n, int pos) { T mask = ~(static_cast<T>(
 template <typename T> int check_bit(T num, int i) { return (num & (1 << i)) != 0; }
 template <typename T> void set_bit(T &num, int i) { num |= (1 << i); }
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+void solve()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n, k;
+        cin >> n >> k;
+
+        vector<ll> a(n);
+
+        for (auto &it : a)
+            cin >> it;
+
+        
+    }
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+}
