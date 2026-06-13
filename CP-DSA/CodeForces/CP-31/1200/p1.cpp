@@ -245,77 +245,74 @@ void set_bit(T &num, int i) { num |= (1 << i); }
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    int t;
+    cin >> t;
 
-    vector<int> first_instance(51, n + 1);
-    for (int i = 1; i <= n; i++)
+    while (t--)
     {
-        int color;
-        cin >> color;
-        if (first_instance[color] == n + 1)
+        int n;
+        cin >> n;
+
+        vector<pair<int, int>> A;
+
+        for (int i = 0; i < n; i++)
         {
-            first_instance[color] = i;
+            int x;
+            cin >> x;
+            A.push_back({x, i});
         }
-    }
 
-    while (k--)
-    {
-        int color;
-        cin >> color;
-        int ans = first_instance[color];
-        for (int i = 1; i <= 50; i++)
+        vector<pair<int, int>> b;
+
+        for (int i = 0; i < n; i++)
         {
-            if (first_instance[i] < ans)
+            int x;
+            cin >> x;
+            b.push_back({x, i});
+        }
+
+        vector<pair<int, int>> c;
+
+        for (int i = 0; i < n; i++)
+        {
+            int x;
+            cin >> x;
+            c.push_back({x, i});
+        }
+
+        sort(A.begin(), A.end(), greater<pair<int, int>>());
+        sort(b.begin(), b.end(), greater<pair<int, int>>());
+        sort(c.begin(), c.end(), greater<pair<int, int>>());
+
+        // We need to choose 3 different days (x, y, z)
+        // where (ax + by + cz) is maximized
+
+        // int ax = *max_element(a.begin(), a.end());
+        // int by = *max_element(b.begin(), b.end());
+        // int cz = *max_element(c.begin(), c.end());
+
+        // and x,y,z must be different
+
+        int mxi = -1;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
             {
-                first_instance[i]++;
+                for (int k = 0; k < 3; k++)
+                {
+                    if (A[i].second != b[j].second &&
+                        A[i].second != c[k].second &&
+                        b[j].second != c[k].second)
+                    {
+                        mxi=max(mxi, A[i].first + b[j].first + c[k].first);
+                    }
+                }
             }
-            // Every color that is currently before 'color'
-            // will shift one position to the right after
-            // moving 'color' to the front.
         }
 
-        first_instance[color] = 1;
-        cout << ans << " ";
+        cout<<mxi<<endl;
     }
-    cout << endl;
-
-    // ony the first instance of every color matters
-
-    // vector<int> ans;
-
-    // while (k--)
-    // {
-    //     for (int i = 0; i < k; i++)
-    //     {
-    //         auto it = find(a.begin(), a.end(), q[i]);
-
-    //         if (it != a.end())
-    //         {
-    //             ans.push_back(it - a.begin());
-    //         }
-    //     }
-    // }
-
-    // for (int i = 0; i < k; i++)
-    // {
-    //     auto it = find(a.begin(), a.end(), q[i]);
-
-    //     int pos = it - a.begin();
-
-    //     cout << pos + 1 << " ";
-
-    //     int val = *it;
-    //     a.erase(it);
-    //     a.insert(a.begin(), val);
-    // }
-
-    // cout << '\n';
-
-    // for (auto &x : ans)
-    // {
-    //     cout << x << " ";
-    // }
 }
 
 signed main()
