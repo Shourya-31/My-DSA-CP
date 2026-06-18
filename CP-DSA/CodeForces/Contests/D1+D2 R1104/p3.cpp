@@ -253,14 +253,28 @@ void solve()
         int n;
         cin >> n;
 
-        vector<string> a(n);
+        vector<int> a(n);
 
-        for (int i = 0; i < n; i++)
+        for (auto &it : a)
+            cin >> it;
+
+        // swap if (a[i-1] > a[i]) then do a[i-1]+=a[i]
+        // choose i and replace adjacent pair (ai, ai+1) with (ai+1, ai + ai+1)
+
+        // Goal: min element at last
+
+        // We will first of first bring the maximum element at the end
+        // Observation:- When moving forward, we can always compare current element and largest so far
+
+        int mx = 0;
+        rep(i, n)
         {
-            cin >> a[i];
+            if (a[i] > mx)
+                mx = a[i];
+            else if (mx > a[i])
+                mx += a[i];
         }
-
-        // cout << "Done" << endl;
+        cout << mx << endl;
     }
 }
 

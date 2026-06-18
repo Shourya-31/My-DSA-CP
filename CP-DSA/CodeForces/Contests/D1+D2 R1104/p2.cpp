@@ -253,14 +253,43 @@ void solve()
         int n;
         cin >> n;
 
-        vector<string> a(n);
+        vector<int> a(n);
+
+        for (auto &it : a)
+            cin >> it;
+
+        vector<int> b(n);
+
+        for (auto &it : b)
+            cin >> it;
+
+        int ops = 0;
+        bool valid_flag = true;
+
+        // x has to be non neagtive
 
         for (int i = 0; i < n; i++)
         {
-            cin >> a[i];
+            bool left = (i > 0 && b[i - 1] == a[i]);
+            bool right = (i < n - 1 && b[i + 1] == a[i]);
+
+            if (a[i] > b[i] && !left && !right)
+            {
+                valid_flag = false;
+                break;
+            }
+            else if (left || right)
+            {
+                ops++;
+                continue;
+            }
         }
 
-        // cout << "Done" << endl;
+        if(valid_flag){
+            cout<<ops<<endl;
+        }else{
+            cout<<-1<<endl;
+        }
     }
 }
 
