@@ -260,7 +260,53 @@ void solve()
             cin >> a[i];
         }
 
-        // cout << "Done" << endl;
+        // (i,j)
+        // (j,n−1−i)
+        // (n−1−i,n−1−j)
+        // (n−1−j,i)
+
+        // For all the rotations these must become identical
+
+        int ans = 0;
+
+        // We only iterate through the top half of rows.
+        // Every rotational group of 4 cells contains exactly one representative here.
+        // Going beyond n/2 would revisit groups already processed.
+
+        rep(i, n / 2)
+        {
+            // For each selected row, iterate through the left half columns.
+            // (n+1)/2 is used so that for odd n, the middle column is included.
+            // This guarantees every rotational group is visited exactly once.
+            rep(j, (n + 1) / 2)
+            {
+                // Stores the number of 1s among the four cells
+                // that belong to the same rotational symmetry group.
+                int count1 = 0;
+                // original position
+                count1 += a[i][j] - '0';
+                // after 90° clockwise rotation
+                count1 += a[j][n - i - 1] - '0';
+                // after 180° clockwise rotation
+                count1 += a[n - i - 1][n - j - 1] - '0';
+                // after 270° clockwise rotation
+                count1 += a[n - j - 1][i] - '0';
+
+                ans += min(count1, 4 - count1);
+
+                // Among these four cells:
+                // cnt1 = number of ones
+                // 4-cnt1 = number of zeros
+                //
+                // To make all four equal:
+                // - Either flip all ones to zero  -> cnt1 flips
+                // - Or flip all zeros to one      -> (4-cnt1) flips
+                //
+                // Choose the cheaper option.
+            }
+        }
+
+        cout << ans << endl;
     }
 }
 
