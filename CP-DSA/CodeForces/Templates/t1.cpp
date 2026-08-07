@@ -85,7 +85,7 @@ void solve()
         int n, k;
         cin >> n >> k;
 
-        vector<ll> a(n);
+        vector<int> a(n);
 
         for (auto &it : a)
             cin >> it;
