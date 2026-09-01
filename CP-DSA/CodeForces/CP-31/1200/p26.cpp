@@ -243,6 +243,25 @@ template <typename T>
 void set_bit(T &num, int i) { num |= (1 << i); }
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+int power(int base, int exp, int mod)
+{
+    int result = 1;
+    base %= mod; // If base is bigger than mod, reduce it.
+
+    while (exp)  // Continue until the exponent becomes 0
+    {
+        // If the current exponent bit is 1,
+        // multiply result by the current base.
+        if (exp & 1)
+            result = result * base % mod;
+
+        base = base * base % mod;  // Square the base for the next power.
+        exp >>= 1;
+    }
+
+    return result; // Return base^exp % mod
+}
+
 void solve()
 {
     int t;
@@ -250,105 +269,18 @@ void solve()
 
     while (t--)
     {
-        int n;
-        cin >> n;
+        int n, k;
+        cin >> n >> k;
 
-        string s;
-        cin >> s;
+        // all its elements are integers between 0 and 2k−1 (inclusive)
+        // bitwise AND is 0
+        // sum of its elements is as large as possible
 
-        // Stores all substrings of s having length 1, 2 or 3.
-        // We will later check whether a candidate MEX exists in this set.
-        set<string> store_combos;
-
-        // Consider every index as the starting point of a substring.
-        rep_range(i, 0, n)
-        {
-            string ss;
-
-            // Build substrings starting from index i.
-            // We only need lengths up to 3 because the
-            // pigeonhole principle guarantees that some
-            // 3-character string will be missing.
-            for (int k = 0; k < 3 && i + k < n; k++)
-            {
-                // Add the current character to the substring.
-                ss.push_back(s[i + k]);
-
-                // Store the newly formed substring.
-                //
-                // Example:
-                // s = "abc"
-                // i = 0
-                //
-                // k = 0 -> "a"
-                // k = 1 -> "ab"
-                // k = 2 -> "abc"
-                store_combos.insert(ss);
-            }
-        }
-
-        // Try MEX lengths in increasing order.
-        //
-        // len = 1 -> all possible 1-character strings
-        // len = 2 -> all possible 2-character strings
-        // len = 3 -> all possible 3-character strings
-        rep_range(len, 1, 4)
-        {
-            // Start with the lexicographically smallest
-            // string of this length.
-            //
-            // len = 1 -> "a"
-            // len = 2 -> "aa"
-            // len = 3 -> "aaa"
-            string t(len, 'a');
-
-            while (true)
-            {
-                // If this string does not exist in our set,
-                // then it does not occur as a substring of s.
-                //
-                // Since we check lengths from small to large
-                // and candidates lexicographically,
-                // this is the required MEX.
-                if (store_combos.count(t) == 0)
-                {
-                    cout << t << '\n';
-                    break;
-                }
-
-                // Generate the next lexicographical string.
-                //
-                // Example:
-                // aa -> ab
-                // ab -> ac
-                // az -> ba
-                // zz -> no next string
-                int idx = len - 1;
-
-                // If the current character is 'z',
-                // change it to 'a' and carry to the left.
-                while (idx >= 0 && t[idx] == 'z')
-                {
-                    t[idx] = 'a';
-                    idx--;
-                }
-
-                // We reached before the first character.
-                // This means we have checked all strings
-                // of this particular length.
-                if (idx < 0)
-                    break;
-
-                // Increase the current character.
-                t[idx]++;
-            }
-
-            // If t is not present, it means the previous loop
-            // found and printed the MEX, so stop checking
-            // larger lengths.
-            if (store_combos.count(t) == 0)
-                break;
-        }
+        cout << power(n, k, 1e9 + 7)<<endl;
+        // OR USE:
+        // for (int i = 0; i < k; i++) {
+		// 	ans = (ans * n) % MOD;
+		// } 
     }
 }
 
