@@ -253,68 +253,45 @@ void solve()
         int n, k;
         cin >> n >> k;
 
-        vector<int> a(n);
-
-        for (auto &it : a)
-            cin >> it;
-
-        int arrys = 0;
-
-        vector<int> rem(k, 0);
-        for (auto &it : a)
+        if (n % 2 == 0)
         {
-            rem[it % k]++;
+            cout << (k - 1) % n + 1 << endl;
+        }
+        else
+        {
+             // Normal circular position after k moves
+            int ans = (k - 1) % n + 1;
+             // For odd n, add 1 extra shift after every n/2 moves
+            ans += (k - 1) / ((n) / 2);
+             // Keep the answer within the range [1, n]
+            ans = (ans - 1) % n + 1;
+            cout << ans << endl;
         }
 
-        for (int i = 0; i < k; i++)
-        {
-            int x = rem[i], y = rem[(k - i) % k];
-            if ((x == 0) && (y == 0))
-                continue; // If both remainders are zero, continue to the next
+        // int Ai = n;
+        // int Bi = 1;
 
-            int temp = min(x, y);
-            // Calculate the minimum of the two counts
-
-            // Adjust the counts by removing pairs
-            x -= min(temp + 1, x);
-            y -= min(temp + 1, y);
-
-            arrys++;
-            arrys += (x + y);
-
-            rem[i] = 0;
-            rem[(k - i) % k] = 0;
-        }
-        cout << arrys << endl;
-
-        // auto check = [&](auto &&self, int i, int j) -> void
+        // while (Bi != k)
         // {
-        //     // Base case
-        //     if (i >= n - 1)
-        //         return;
+        //     Ai--;
+        //     Bi++;
 
-        //     // Move to next i
-        //     if (j >= n)
+        //     if (Ai == 0)
+        //         Ai = n;
+
+        //     if (Bi == n + 1)
+        //         Bi = 1;
+
+        //     if (Ai == Bi)
         //     {
-        //         self(self, i + 1, i + 2);
-        //         return;
+        //         Ai--;
+
+        //         if (Ai == 0)
+        //             Ai = n;
         //     }
+        // }
 
-        //     // Check current pair
-        //     if ((a[i] + a[j]) % k == 0)
-        //     {
-        //         arrys++;
-        //         ans_array.push_back(a[i]);
-        //         ans_array.push_back(a[j]);
-        //     }
-
-        //     // Move to next j
-        //     self(self, i, j + 1);
-        // };
-
-        // check(check, 0, 1);
-
-        // cout << arrys << endl;
+        // cout << Ai << endl;
     }
 }
 
