@@ -254,64 +254,28 @@ void solve()
         cin >> n;
 
         vector<int> a(n);
-        for (auto &it : a)
-            cin >> it;
 
-        // Find an element different from a[0]
-        int x = -1;
-        for (int i = 1; i < n; i++)
+        // we need to find pairs such as i<j a[i] & a[j] >= a[i] XOR a[j]
+        // unordered_map<int, int> mp;
+        int ans = 0;
+
+        vector<int> count(64, 0); // Count of numbers with each bit set
+
+        for (int i = 0; i < n; i++)
         {
-            if (a[i] != a[0])
-            {
-                x = i;
-                break;
-            }
+            int x;
+            cin >> x;
+
+            int msb = 63 - __builtin_clzll(x);
+            count[msb]++;
         }
 
-        if (x == -1)
+        for (int i = 0; i < 64; i++)
         {
-            pn;
-            continue;
-        }
-        py;
-        
-        // Connecting a[0] with diff values
-        rep_range(i, 1, n)
-        {
-            if (a[i] != a[0])
-            {
-                cout << 1 << " " << i + 1 << endl;
-            }
-        }
-        // Connect x with all elements equal to a[0]
-
-        rep_range(i, 1, n)
-        {
-            if (a[i] == a[0])
-            {
-                cout << x + 1 << " " << i + 1 << endl;
-            }
+            ans += count[i] * (count[i] - 1) / 2;
         }
 
-        // For every other node:
-        // if its value differs from node 1:
-        //     connect it to node 1
-        // else:
-        //     connect it to x
-
-        // n does not exceed 5000 therefore O(n) might be possible
-        // consider a clock. Now we want to connect each of the
-        // number with each other, there are 12 numbers so we need
-        // to connect them in 11 ways such that always 2 diff nums are connected together
-
-        // the point is, the nums might be 12 but there can be 2 or more same nums
-        // and we have to avoid connecting the same num together
-        // while making sure to build 11 diff connections
-
-        // If it is possible, we will print Yes
-        // if there is no way that this can be avoided then print No
-
-        // After print Yes/No we also need to print the pairs we matched using 2 diff districts
+        cout << ans << '\n';
     }
 }
 
